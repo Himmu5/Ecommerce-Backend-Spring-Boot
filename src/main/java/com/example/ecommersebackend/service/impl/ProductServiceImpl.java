@@ -7,10 +7,11 @@ import com.example.ecommersebackend.repositorie.ProductRepo;
 import com.example.ecommersebackend.service.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,12 +30,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDto> getAllProducts() {
+    public List<ProductDto> getAllProducts(Pageable pageable) {
 
-        List<Product> products = this.productRepo.findAll();
+        Page<Product> products =  this.productRepo.findAll(pageable);
 
         return products.stream().map((p)->this.modelMapper.map(p , ProductDto.class)).collect(Collectors.toList());
-
     }
 
 }
