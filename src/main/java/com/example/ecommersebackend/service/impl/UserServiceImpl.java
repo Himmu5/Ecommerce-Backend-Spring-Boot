@@ -18,7 +18,6 @@ public class UserServiceImpl implements UserService {
     public UserDto createUser(UserDto userDto) {
         User u = this.modelMapper.map(userDto , User.class);
         User user = this.userRepo.save(u);
-//        this.userRepo.fin
         return this.modelMapper.map(user , UserDto.class);
     }
 }

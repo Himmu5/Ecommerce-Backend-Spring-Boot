@@ -1,9 +1,9 @@
 package com.example.ecommersebackend.controller;
 
-import com.example.ecommersebackend.Dto.SigninUser;
 import com.example.ecommersebackend.Dto.UserDto;
 import com.example.ecommersebackend.dbo.User;
 import com.example.ecommersebackend.service.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
+    ModelMapper modelMapper;
+
+    @Autowired
     UserService userService;
     @PostMapping("/signup")
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
@@ -22,7 +25,7 @@ public class UserController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<UserDto> signinUser(@RequestBody SigninUser signinUser){
+    public ResponseEntity<UserDto> signinUser(@RequestBody UserDto signinUser){
         System.out.println(" User Info : "+signinUser.getEmail() + " password " + signinUser.getPassword());
         return ResponseEntity.ok(new UserDto());
     }
