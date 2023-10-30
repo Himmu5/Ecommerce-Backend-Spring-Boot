@@ -1,6 +1,7 @@
 package com.example.ecommersebackend.dbo;
 
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,6 +22,9 @@ public class Product {
     private Long rating;
     private Integer stock;
     private String brand;
-    private String category;
+
+    @ManyToOne
+    private CategoryDbo category;
+
     private String thumbnail;
 }
